@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+        input {
+            margin-right: 1rem;
+        }
+    </style>
+    <title>ex5-dom</title>
+</head>
+<body>
+
+<script>
+
+    let form = document.createElement("form")
+
+    let inputPoids = document.createElement("input")
+    inputPoids.setAttribute("type", "number")
+    inputPoids.setAttribute("placeholder", "Entrez votre poids (kg)")
+
+    let inputTaille = document.createElement("input")
+    inputTaille.setAttribute("type", "number")
+    inputTaille.setAttribute("placeholder", "Entrez votre taille (cm)")
+
+    let button = document.createElement("button")
+    button.innerHTML = "Calculez votre IMC"
+
+    form.appendChild(inputPoids)
+    form.appendChild(inputTaille)
+    form.appendChild(button)
+    document.querySelector("body").appendChild(form)
+
+    let displayResult = document.createElement("p")
+    const calculImc = (event) => {
+        event.preventDefault()
+        const poids = inputPoids.value
+        const taille = inputTaille.value / 100
+        const resultat = (poids / Math.pow(taille, 2)).toFixed(2)
+
+        let message = ""
+        if (resultat < 18.4) {
+            message = "vous êtes maigre"
+        } else if (resultat > 25) {
+            message = "vous êtes en surpoids"
+        } else {
+            message = "vous avez une corpulence normale"
+        }
+
+        displayResult.innerHTML = `Avec un IMC de ${resultat} kg/m², ${message}.`
+        document.querySelector("body").appendChild(displayResult)
+    }
+
+    button.addEventListener("click", calculImc)
+
+
+</script>
+</body>
+</html>

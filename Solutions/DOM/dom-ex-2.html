@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcul de l'IMC</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    #container {
+        width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<body>
+<div id="container">
+    <h3>Calcul de l'Indice de Masse Corporelle (IMC)</h3>
+    <form id="imcForm">
+        <label for="weight">Poids (kg):</label>
+        <input type="number" id="weight" step="0.1" required>
+        <br>
+        <label for="height">Taille (cm):</label>
+        <input type="number" id="height" step="0.1" required>
+        <br>
+        <button type="button" id="calculateButton">Calculer</button>
+    </form>
+    <div id="result"></div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const calculateButton = document.getElementById('calculateButton');
+        const resultDiv = document.getElementById('result');
+
+        calculateButton.addEventListener('click', function () {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value) / 100;
+
+            if (!isNaN(weight) && !isNaN(height) && height > 0) {
+                const bmi = weight / (height * height);
+                resultDiv.innerHTML = `Votre Indice de Masse Corporelle (IMC) est : ${bmi.toFixed(2)}`;
+            } else {
+                resultDiv.innerHTML = 'Veuillez entrer des valeurs valides pour le poids et la taille.';
+            }
+        });
+    });
+</script>
+</body>
+</html>
