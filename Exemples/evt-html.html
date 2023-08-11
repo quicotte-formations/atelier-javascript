@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <button onclick="clic(event)">Clic</button>
+    <textarea onkeyup="changementTxt()"></textarea>
+    <select onchange="change()">
+        <option>A</option>
+        <option>C</option>
+    </select>
+    <h1 onclick="clic(event)">Titre</h1>
+
+<script>
+
+    let change = (e)=>{
+        console.log(e)
+    }
+
+    let clic = (e)=>{
+
+        console.log(e)
+
+        if( e.target==document.querySelector('button') ) {
+            console.log("T'as cliqué sur btn")
+        }else if( e.target==document.querySelector('h1') ){
+            console.log('H1')
+        }
+    }
+
+    let changementTxt = ()=>{
+        console.log('TEXTE CHANGE')
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <button >Clic</button>
+    <textarea ></textarea>
+    <select>
+        <option>A</option>
+        <option>C</option>
+    </select>
+    <h1>Titre</h1>
+
+<script>
+
+    let change = (e)=>{
+        console.log(e)
+    }
+
+    let clic = (e)=>{
+
+        console.log(e)
+
+        if( e.target==document.querySelector('button') ) {
+            console.log("T'as cliqué sur btn")
+        }else if( e.target==document.querySelector('h1') ){
+            console.log('H1')
+        }
+    }
+
+    let changementTxt = ()=>{
+        console.log('TEXTE CHANGE')
+    }
+
+    // Armer événements via JS
+    //document.querySelector('button').addEventListener( 'click', clic )
+    document.querySelector('button').onclick = clic
+    document.querySelector('h1').addEventListener( 'click', clic )
+    document.querySelector('select').addEventListener('change', changementTxt)
+</script>
+
+</body>
+</html>
