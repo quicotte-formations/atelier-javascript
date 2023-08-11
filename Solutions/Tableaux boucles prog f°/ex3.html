@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="JS/cryptos.js"></script>
+</head>
+<body>
+
+<script>
+    // a
+    console.log( data.symbols.filter(s=>s.baseAsset==='BTC') )
+
+    // b
+    const ex2 = data.symbols.filter(e => e.status === "TRADING")
+    sorted = ex2.sort((elem1,elem2)=>{
+        if(elem1.symbol<elem2.symbol){
+            return -1;
+        }else if(elem1.symbol>elem2.symbol){
+            return 1;
+
+        }else{
+            return 0;
+        }
+    });
+    console.log(sorted)
+
+    // c
+    var symbolAvecBTCUSDT = data.symbols
+        .filter(symbol => {
+            return symbol.baseAsset == "BTC" && symbol.quoteAsset == "USDT"
+        })
+        .map(symbol => {
+            return `<div data-quote="${symbol.quoteAsset}" data-base="${symbol.baseAsset}">LE SYMBOL</div>`
+        })
+    console.log(symbolAvecBTCUSDT)
+
+</script>
+</body>
+</html>

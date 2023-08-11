@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="JS/acteurs.js"></script>
+</head>
+<body>
+
+<script>
+    //a.  Filtrer uniquement les acteurs de moins de 60 ans
+    let acteursMoins60 = personnes.filter(personne => personne.age < 60);
+    console.log('Acteurs de moins de 60 ans :', acteursMoins60);
+
+    // b
+    let newDonnée = acteurs.map(b =>{
+        return `<div>${b.prenom} ${b.nom}</div>`
+    });
+    console.log(newDonnée);
+
+    // c
+    const acteursTries = personnes.sort((a, b) => {
+        const nomComparison = a.nom.localeCompare(b.nom);
+        if (nomComparison !== 0) {
+            return nomComparison;
+        }
+        return a.prenom.localeCompare(b.prenom);
+    });
+    console.log("Tableau d'acteurs triés par nom et prénom :");
+    console.log(acteursTries);
+
+    // d
+    const acteursPlusDe60Ans = personnes.filter(personne => personne.age > 60);
+
+    acteursPlusDe60Ans.sort((a, b) => {
+        if (a.age < b.age) return 1;
+        if (a.age > b.age) return -1;
+
+        return 0;
+    });
+
+    acteursPlusDe60Ans.forEach(acteur => {
+        console.log(`Nom: ${acteur.nom}, Age: ${acteur.age}`);
+    });
+
+</script>
+</body>
+</html>
