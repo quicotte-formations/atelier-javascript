@@ -8,15 +8,14 @@
     <script>
 
         // cf : https://wizard-world-api.herokuapp.com/swagger/index.html
-        let myPromise = fetch('https://wizard-world-api.herokuapp.com/Wizards')
-        myPromise.then( resp => {
-            console.log( 'Statut HTTP réponse : ' + resp.status )
+        let fonctionSynchrone = async ()=>{
+            let response = await fetch('https://wizard-world-api.herokuapp.com/Wizards')
+            let data = await response.json()
+            console.log(data)
+        }
 
-            let promiseJson = resp.json()
-            promiseJson.then( wizards => {
-                data = wizards
-            } )
-        } )
+        fonctionSynchrone()
+
     </script>
 </body>
 </html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label>Prénom</label>
+<input id="prenom">
+<label>Nom</label>
+<input id="nom">
+<button>Cliquez ici ; )</button>
+<script>
+    document.querySelector('button').addEventListener('click', () => {
+
+
+        let prenom = document.getElementById('prenom').value;
+
+        let nom = document.getElementById('nom').value;
+
+
+        alert(prenom + " " + nom);
+
+    });
+</script>
+</body>
+</html>
