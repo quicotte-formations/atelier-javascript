@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- Import librairie chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+<div>
+
+    <!-- La balise qui accueillera la graphe -->
+    <canvas id="myChart"></canvas>
+
+</div>
+<script>
+
+    let afficheGraphe = async () => {
+
+        // Récupère données
+        let params = new URLSearchParams({
+            symbol: 'BTCEUR',
+            interval: '1d',
+
+        }).toString()
+
+        let response = await fetch(`https://api.binance.com/api/v3/klines?${params}`)
+        let klines = await response.json()
+        console.log('chargé')
+
+        // Affiche le graphe à partir de ces données
+        let labels = klines.map( kline => new Date(kline[0]).toLocaleString())
+        let donnees = klines.map( kline => kline[1] )
+        const ctx = document.getElementById('myChart');
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'My First Dataset',
+                data: donnees,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        }
+        new Chart(ctx, {
+                type: 'line',
+                data: data,
+            }
+        )
+    }
+
+    afficheGraphe()
+</script>
+</body>
+</html>

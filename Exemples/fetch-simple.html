@@ -8,13 +8,11 @@
     <script>
 
         // cf : https://wizard-world-api.herokuapp.com/swagger/index.html
-        let fonctionSynchrone = async ()=>{
-            let response = await fetch('https://wizard-world-api.herokuapp.com/Wizards')
-            let data = await response.json()
-            console.log(data)
-        }
-
-        fonctionSynchrone()
+        fetch('https://wizard-world-api.herokuapp.com/Wizards').then( repHttp => {
+            repHttp.json().then( donnees => {
+                console.log( donnees )
+            } )
+        } )
 
     </script>
 </body>

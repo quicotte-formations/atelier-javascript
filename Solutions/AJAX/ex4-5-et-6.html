@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="temperatureDiv"></div>
+<input type="text" id="ville" placeholder="Entrez une ville">
+<button type="button">Rechercher</button>
+
+<script>
+
+    //Création fonction qui renvoie la latitude et la longitude d'une ville passée en paramètre
+    function latLong(ville) {
+        const params = {
+            q: ville,
+            format: "json"
+
+        }
+
+        const queryParams = new URLSearchParams(params).toString();
+
+        let api = fetch(`https://nominatim.openstreetmap.org/search?${queryParams}`)
+            .then(response => response.json()
+                .then(async data => {
+                    console.log(data[0].lat)
+                    console.log(data[0].lon)
+
+                    const temperatureDiv = document.getElementById("temperatureDiv")
+
+                    //FONCTION pour la température
+                    const params = {
+                        latitude: parseFloat(data[0].lat).toFixed(2),
+                        longitude: parseFloat(data[0].lon).toFixed(2),
+                        hourly: "temperature_2m"
+
+                    }
+                    const queryParams = new URLSearchParams(params).toString();
+
+                    let response = await fetch(`https://api.open-meteo.com/v1/forecast?${queryParams}`)
+                    let data1 = await response.json();
+                    console.log(data1)
+
+                    // Récupération de la température à partir des données JSON
+                    const temperature = data1.hourly.temperature_2m[0];
+
+                    // Affichage de la température dans la div
+                    temperatureDiv.textContent = `Température actuelle : ${temperature} °C`;
+                })
+            )
+    }
+
+    document.querySelector("button").addEventListener("click", function () {
+        const ville = document.querySelector("#ville").value;
+        latLong(ville);
+    });
+</script>
+
+</body>
+</html>
